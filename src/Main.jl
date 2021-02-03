@@ -24,3 +24,11 @@ value = Person("Bob", "Jones")
 
 @info value
 
+abstract type MyAbstractType end
+
+mutable struct MyType <: MyAbstractType
+    foo
+    bar::Int
+end
+x = MyType("Hello World!", 10)
+println(x.foo)
