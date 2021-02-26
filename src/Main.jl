@@ -15,6 +15,8 @@ println(typeof(value))
 value = "Alpha"
 println(typeof(value))
 
+# Types (structs)
+
 struct Person
     firstName::String
     lastName::String
@@ -30,5 +32,14 @@ mutable struct MyType <: MyAbstractType
     foo
     bar::Int
 end
+
 x = MyType("Hello World!", 10)
 println(x.foo)
+println(x.bar)
+
+
+y = MyType("Goodbye World!", 20)
+println(y.foo)
+println(y.bar)
+
+
