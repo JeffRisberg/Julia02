@@ -42,4 +42,18 @@ y = MyType("Goodbye World!", 20)
 println(y.foo)
 println(y.bar)
 
+macro e(x)
+   if typeof(x) == Expr
+      println(x.args)
+   end
+   return x
+end
+
+@e 4
+
+@e 4+4
+
+@e 3.14159
+
+@e 3.14159 * 2
 
