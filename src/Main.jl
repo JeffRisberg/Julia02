@@ -6,6 +6,7 @@ Main:
 =#
 
 # Numbers
+
 count = 5
 println(typeof(count))
 
@@ -14,6 +15,14 @@ println(typeof(value))
 
 value = "Alpha"
 println(typeof(value))
+
+# Arrays
+
+name_list = ["alpha", "beta", "gamma"]
+println(name_list)
+
+name_index = findfirst(==("beta"), name_list)
+println(name_index)
 
 # Types (structs)
 
@@ -37,10 +46,11 @@ x = MyType("Hello World!", 10)
 println(x.foo)
 println(x.bar)
 
-
 y = MyType("Goodbye World!", 20)
 println(y.foo)
 println(y.bar)
+
+# Macros
 
 macro e(x)
    if typeof(x) == Expr
