@@ -24,6 +24,12 @@ println(name_list)
 name_index = findfirst(==("beta"), name_list)
 println(name_index)
 
+append!(name_list, ["delta"])
+println(name_list)
+
+name_index = findfirst(==("delta"), name_list)
+println(name_index)
+
 # Types (structs)
 
 struct Person
