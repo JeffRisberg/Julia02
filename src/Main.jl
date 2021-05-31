@@ -29,6 +29,10 @@ println(name_list)
 
 name_index = findfirst(==("delta"), name_list)
 println(name_index)
+println(length(n for n in name_list))
+
+length_list = (length(n) for n in name_list)
+println(collect(len for len in length_list))
 
 # Types (structs)
 
@@ -73,3 +77,38 @@ end
 
 @e 3.14159 * 2
 
+
+# try out collect() and argmax()
+
+"""
+    argmax(seq, fn)
+
+Applies fn() to each element in seq and returns the element that has the highest fn() value. argmax()
+is similar to mapreduce(fn, max, seq) in computing the best score, but returns the corresponding element.
+"""
+function argmax(seq::T, fn::Function) where {T <: Vector}
+    local best_element = seq[1];
+    local best_score = fn(best_element);
+    for element in seq
+        element_score = fn(element);
+        if (element_score > best_score)
+            best_element = element;
+            best_score = element_score;
+        end
+    end
+    return best_element;
+end
+
+v = [(6.0, 5.0), (7.5, 1.6), (8.3, 0.0)]
+println(v)
+println(argmax(v, (function (x::Tuple{Float64, Float64}) return x[1]+x[2] end)))
+
+v = [(6.0, 5.0) => "g", (7.5, 1.6) => "h", (8.3, 0.0) => "w"]
+println(v)
+#v = collect(x.length for x in name_list)
+
+alpha = ((item[1][1] + item[1][2], item[2]) for item in v)
+println(alpha)
+println(collect(alpha))
+
+println(argmax(collect(alpha), function (x::Tuple{Float64, String}) return x end))
