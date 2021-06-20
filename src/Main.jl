@@ -112,3 +112,16 @@ println(alpha)
 println(collect(alpha))
 
 println(argmax(collect(alpha), function (x::Tuple{Float64, String}) return x end))
+
+# ----
+
+x = 1.0
+y = 1.0
+result = [([x - 1.0, y], 0.8), ([x, y - 1.0], 0.1), ([x, y + 1.0], 0.1)]  # move left
+println(typeof(result))
+
+function is_valid_state(state::Tuple{Vector{Float64}, Float64})
+    return state[1][1] > 0 && state[1][1] < 5 && state[1][2] > 0 && state[1][2] < 4
+end
+
+println(filter(is_valid_state, result))
