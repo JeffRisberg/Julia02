@@ -33,14 +33,25 @@ println(logpdf(cpdB, data)) # -5.201
 
 # Sampling
 
+println("Sampling")
+
 println(rand(bn, 5))
-data = DataFrame(c=[1,1,1,1,2,2,2,2,3,3,3,3],
+data = DataFrame(
+c=[1,1,1,1,2,2,2,2,3,3,3,3],
 b=[1,1,1,2,2,2,2,1,1,2,1,1],
 a=[1,1,1,2,1,1,2,1,1,2,1,1])
 
+# Parameter Learning
+
+println("Parameter Learning")
+
 bn5 = fit(DiscreteBayesNet, data, (:a=>:b, :a=>:c, :b=>:c))
 
+println(bn5)
+
 # Inference
+
+println("Inference")
 
 bn = DiscreteBayesNet()
 push!(bn, DiscreteCPD(:a, [0.3,0.7]))
@@ -52,12 +63,21 @@ push!(bn, DiscreteCPD(:c, [:a, :b], [2,2],
          Categorical([0.4,0.6]),
         ]))
 
-phi = infer(bn, :c, evidence=Assignment(:b=>1))
+phi = infer(bn, :c, evidence=Assignment(:a=>1, :b=>1))
 println(phi)
 
-println(convert(DataFrame, phi))
+phiDF = convert(DataFrame, phi)
+
+println(phiDF)
+
+println(describe(phiDF))
+
+phi = infer(bn, :c, evidence=Assignment(:a=>1))
+println(phi)
 
 # Bayesian Scoring
+
+println("Bayesian Scoring")
 
 data = DataFrame(c=[1,1,1,1,2,2,2,2,3,3,3,3],
                  b=[1,1,1,2,2,2,2,1,1,2,1,1],
