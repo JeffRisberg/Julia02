@@ -8,6 +8,7 @@ BayesNets01:
 using Random
 Random.seed!(0) # seed the random number generator to 0, for a reproducible demonstration
 using BayesNets
+using LightGraphs
 
 bn = BayesNet()
 push!(bn, StaticCPD(:a, Normal(1.0)))
@@ -83,10 +84,13 @@ data = DataFrame(c=[1,1,1,1,2,2,2,2,3,3,3,3],
                  b=[1,1,1,2,2,2,2,1,1,2,1,1],
                  a=[1,1,1,2,1,1,2,1,1,2,1,1])
 g = DAG(3)
-e1 = add_edge!(g,1,2)
-e2 = add_edge!(g,2,3)
-e3 = add_edge!(g,1,3)
+add_edge!(g,1,2)
+add_edge!(g,2,3)
+add_edge!(g,1,3)
 
 println(bayesian_score(g, [:a,:b,:c], data))
 
-rem_edge!(g, e3)
+rem_edge!(g, 1, 3)
+
+println(bayesian_score(g, [:a,:b,:c], data))
+
