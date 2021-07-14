@@ -84,9 +84,9 @@ data = DataFrame(c=[1,1,1,1,2,2,2,2,3,3,3,3],
                  b=[1,1,1,2,2,2,2,1,1,2,1,1],
                  a=[1,1,1,2,1,1,2,1,1,2,1,1])
 g = DAG(3)
-add_edge!(g,1,2)
-add_edge!(g,2,3)
-add_edge!(g,1,3)
+add_edge!(g, 1, 2)
+add_edge!(g, 2, 3)
+add_edge!(g, 1, 3)
 
 println(bayesian_score(g, [:a,:b,:c], data))
 
