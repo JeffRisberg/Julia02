@@ -34,6 +34,12 @@ println(length(n for n in name_list))
 length_list = (length(n) for n in name_list)
 println(collect(len for len in length_list))
 
+score_list = Array{Int}(undef, 10)
+for i = 1:10
+  score_list[i] = 100
+end
+println(score_list)
+
 # Types (structs)
 
 struct Person
